@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stratford Public Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <style>
+        :root {
+            /* Light Theme Variables */
+            --primary-gradient: linear-gradient(135deg, #0a84ff, #64d2ff);
+            --primary-start: #0a84ff;
+            --primary-end: #64d2ff;
+            --background-light: #f5f8fc;
+            --card-light-gradient: linear-gradient(145deg, #ffffff, #e0e7ff);
+            --text-light: #1c1e21;
+            --text-muted-light: #5a5a6a;
+            --radius: 1.2rem;
+            --transition: 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--background-light);
+            color: var(--text-light);
+            transition: background var(--transition), color var(--transition);
+        }
+
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4rem 1rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(10, 132, 255, 0.5);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        nav {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav a {
+            color: var(--primary-start);
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary-end);
+        }
+
+        .toggle-darkmode {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            -webkit-user-select: none;
+            user-select: none;
+            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.6);
+        }
+
+        .toggle-darkmode:hover {
+            filter: brightness(1.15);
+            transform: scale(1.1);
+        }
+
+        body.dark .toggle-darkmode {
+            background: var(--primary-gradient);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.9);
+            color: white;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: var(--card-light-gradient);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: background var(--transition), color var(--transition), transform var(--transition);
+            color: var(--text-light);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary-start);
+            border-bottom: 3px solid var(--primary-end);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            color: var(--text-muted-light);
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Dark Theme overrides */
+
+        body.dark {
+            --primary-gradient: linear-gradient(135deg, #6a00f4, #00d2ff);
+            --primary-start: #6a00f4;
+            --primary-end: #00d2ff;
+            --background-dark: #0a0a0a;
+            --card-dark-gradient: linear-gradient(145deg, #121212, #1e1e1e);
+            --text-light: #e0e0e0;
+            --text-muted-light: #888;
+            background: var(--background-dark);
+            color: var(--text-light);
+        }
+
+        body.dark header {
+            background: var(--primary-gradient);
+            box-shadow: 0 8px 30px rgba(106, 0, 244, 0.7);
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 210, 255, 0.7);
+        }
+
+        body.dark nav {
+            background: #121212;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        body.dark nav a {
+            color: var(--text-light);
+        }
+
+        body.dark nav a:hover {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.dark .toggle-darkmode {
+            background: var(--primary-gradient);
+            box-shadow: 0 4px 12px rgba(106, 0, 244, 0.6);
+        }
+
+        body.dark .toggle-darkmode:hover {
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.9);
+        }
+
+        body.dark .card {
+            background: var(--card-dark-gradient);
+            box-shadow: 0 6px 30px rgba(0, 210, 255, 0.3);
+            color: var(--text-light);
+        }
+
+        body.dark .card:hover {
+            box-shadow: 0 12px 50px rgba(0, 210, 255, 0.6);
+            transform: translateY(-6px);
+        }
+
+        body.dark h2 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 3px solid var(--primary-end);
+        }
+
+        body.dark ul {
+            color: var(--text-muted-light);
+        }
+
+        body.dark .gallery img {
+            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.15);
+            filter: brightness(0.95);
+        }
+
+        body.dark .gallery img:hover {
+            box-shadow: 0 14px 40px rgba(0, 210, 255, 0.4);
+            filter: brightness(1);
+        }
+
+        .gallery img {
+            width: 50%;
+            height: auto;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition), box-shadow var(--transition);
+            margin-top: 1rem;
+        }
+
+        .library-map {
+            border: 0;
+            max-width: 100%;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 16px rgba(10, 132, 255, 0.15);
+            margin-top: 2rem;
+        }
+        .library-map:hover {
+            box-shadow: 0 6px 20px rgba(10, 132, 255, 0.25);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--primary-gradient);
+            color: white;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div>
+            <a href="#mission">Mission</a>
+            <a href="#divide">Digital Divide</a>
+            <a href="#offers">Services</a>
+            <a href="#map">Map</a>
+            <a href="#viewer">3D View</a>
+            <a href="#help">Get Involved</a>
+        </div>
+        <button type="button" id="toggle-darkmode" class="toggle-darkmode" aria-label="Toggle dark mode"
+            onclick="toggleDarkMode()"></button>
+    </nav>
+    <header>
+        <h1>Stratford Public Library</h1>
+        <p>Bridging the Digital Divide in Stratford & Perth</p>
+        <p>Equal access to digital resources and learning opportunities.</p>
+    </header>
+
+    <section id="mission">
+        <div class="card">
+            <h2>📖 Mission & History</h2>
+            <p><strong>Founded:</strong> 1903<br>
+                <strong>Growth:</strong> Expanded in 1926 & 1975<br>
+                <strong>Focus:</strong> Empowering through equitable tech access
+            </p>
+            <p><em>Mission:</em> An equitable, safe, and welcoming environment for all.</p>
+        </div>
+    </section>
+
+    <section id="divide">
+        <div class="card">
+            <h2>🌐 The Digital Divide</h2>
+            <ul>
+                <li><strong>Seniors:</strong> Lack digital literacy & confidence</li>
+                <li><strong>Job Seekers:</strong> Barriers to applying online</li>
+                <li><strong>Rural Citizens:</strong> Poor internet infrastructure</li>
+            </ul>
+            <p><strong>1 in 4</strong> Canadians face digital literacy challenges.<br>
+                <strong>21%</strong> of Ontarians lack devices or internet.
+            </p>
+        </div>
+    </section>
+
+    <section id="offers">
+        <div class="card">
+            <h2>💡 What SPL Offers</h2>
+            <ul>
+                <li>🧑‍🏫 One-on-one Tech Tutoring</li>
+                <li>🌐 Free Public Wi-Fi & Computers</li>
+                <li>💻 Chromebook Lending</li>
+                <li>🛠️ MakerSpace for Creativity</li>
+            </ul>
+            <div class="gallery">
+                <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/dsc1930.jpg?itok=-7_UiXDq"
+                    alt="Library Space">
+                <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/smtechhelp_0.jpg?itok=1WtIoHL-"
+                    alt="Tech Assistance">
+                <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/codingbnr0.jpg?h=7e5c5687&itok=s0D_P7SC" alt="Makerspace tools">
+                <br>
+                <iframe class="library-map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.544415320985!2d-80.9852903!3d43.3708652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882eadf64c43c1a7%3A0x684b32198f361bf!2sStratford%20Public%20Library!5e0!3m2!1sen!2sca!4v1686622056694!5m2!1sen!2sca"
+                    width="600" height="450" allowfullscreen="" title="Stratford Public Library Location Map"></iframe>
+    </section>
+
+    <section id="viewer">
+        <div class="card">
+            <h2>📦 3D Experience</h2>
+            <p>Explore a rotating model representing innovation & tech access.</p>
+            <div id="model-viewer"></div>
+        </div>
+    </section>
+
+    <section id="help">
+        <div class="card">
+            <h2>🤝 How You Can Help</h2>
+            <ul>
+                <li>📚 Volunteer as a Tech Tutor</li>
+                <li>💵 Donate devices or funds</li>
+                <li>🎉 Attend Tech Tuesdays and workshops</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 Stratford Public Library — Bridging the Digital Divide
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            document.querySelector('nav').classList.toggle('dark');
+        }
+
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(350, 350);
+        document.getElementById("model-viewer").appendChild(renderer.domElement);
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshStandardMaterial({ color: 0x0a84ff });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        const light = new THREE.PointLight(0xffffff, 1);
+        light.position.set(5, 5, 5);
+        scene.add(light);
+        camera.position.z = 3;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        function toggleDarkMode() {
+            const body = document.body;
+            const nav = document.querySelector('nav');
+            const btn = document.getElementById('toggle-darkmode');
+
+            body.classList.toggle('dark');
+            nav.classList.toggle('dark');
+
+            if (body.classList.contains('dark')) {
+                btn.textContent = '☀️';            // Sun icon for light mode
+                btn.setAttribute('aria-label', 'Toggle light mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                btn.textContent = '🌙';            // Moon icon for dark mode
+                btn.setAttribute('aria-label', 'Toggle dark mode');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // On page load, apply saved theme and update button icon
+        window.addEventListener('DOMContentLoaded', () => {
+            const theme = localStorage.getItem('theme');
+            const btn = document.getElementById('toggle-darkmode');
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
+                document.querySelector('nav').classList.add('dark');
+                btn.textContent = '☀️';
+                btn.setAttribute('aria-label', 'Toggle light mode');
+            } else {
+                btn.textContent = '🌙';
+                btn.setAttribute('aria-label', 'Toggle dark mode');
+            }
+        });
+    </script>
+    </section>
+</body>
+
+</html>
