@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stratford Public Library</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <style>
         :root {
             /* Light Theme Variables */
@@ -239,6 +238,7 @@
             box-shadow: 0 4px 16px rgba(10, 132, 255, 0.15);
             margin-top: 2rem;
         }
+
         .library-map:hover {
             box-shadow: 0 6px 20px rgba(10, 132, 255, 0.25);
         }
@@ -250,6 +250,52 @@
             color: white;
             font-size: 0.9rem;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .sketchfab-embed-wrapper {
+            margin: 1.5rem 0 0 0;
+            text-align: center;
+        }
+
+        /* Added to move inline styles from HTML */
+        .sketchfab-embed-wrapper {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .sketchfab-embed-wrapper iframe {
+            width: 75%;
+            height: 300px;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 16px rgba(10, 132, 255, 0.15);
+            background: #181a1b;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Added for Sketchfab iframe in 3D Tech Preview */
+        .sketchfab-iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 480px;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+            background: #181a1b;
+            box-shadow: 0 4px 16px rgba(10, 132, 255, 0.15);
+        }
+
+        .sketchfab-attribution {
+            font-size: 13px;
+            color: #777;
+            margin-top: 8px;
+        }
+
+        .sketchfab-attribution-link {
+            font-weight: bold;
+            color: #1CAAD9;
+            text-decoration: none;
+            transition: color 0.2s;
         }
     </style>
 </head>
@@ -275,22 +321,22 @@
 
     <section id="mission">
         <div class="card">
-            <h2>📖 Mission & History</h2>
-            <p><strong>Founded:</strong> 1903<br>
-                <strong>Growth:</strong> Expanded in 1926 & 1975<br>
-                <strong>Focus:</strong> Empowering through equitable tech access
+            <h2>📖 Our Mission</h2>
+            <p><strong>Established:</strong> 1903<br>
+                <strong>Expanded:</strong> 1926 & 1975<br>
+                <strong>Goal:</strong> Empower through digital access & community.
             </p>
-            <p><em>Mission:</em> An equitable, safe, and welcoming environment for all.</p>
+            <p>We foster a welcoming, equitable, and safe space for everyone.</p>
         </div>
     </section>
 
     <section id="divide">
         <div class="card">
-            <h2>🌐 The Digital Divide</h2>
+            <h2>📉 Why It Matters</h2>
             <ul>
-                <li><strong>Seniors:</strong> Lack digital literacy & confidence</li>
-                <li><strong>Job Seekers:</strong> Barriers to applying online</li>
-                <li><strong>Rural Citizens:</strong> Poor internet infrastructure</li>
+                <li>👵 Seniors lack digital literacy & confidence</li>
+                <li>🔍 Job seekers face online access barriers</li>
+                <li>🏡 Rural users struggle with poor connectivity</li>
             </ul>
             <p><strong>1 in 4</strong> Canadians face digital literacy challenges.<br>
                 <strong>21%</strong> of Ontarians lack devices or internet.
@@ -300,42 +346,77 @@
 
     <section id="offers">
         <div class="card">
-            <h2>💡 What SPL Offers</h2>
+            <h2>💡 What We Offer</h2>
             <ul>
-                <li>🧑‍🏫 One-on-one Tech Tutoring</li>
-                <li>🌐 Free Public Wi-Fi & Computers</li>
-                <li>💻 Chromebook Lending</li>
-                <li>🛠️ MakerSpace for Creativity</li>
+                <li>👨‍🏫 Tech tutoring & digital literacy programs</li>
+                <li>🌐 Free Wi-Fi, computers, & device lending</li>
+                <li>🔧 Creative MakerSpace access</li>
             </ul>
             <div class="gallery">
                 <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/dsc1930.jpg?itok=-7_UiXDq"
                     alt="Library Space">
                 <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/smtechhelp_0.jpg?itok=1WtIoHL-"
                     alt="Tech Assistance">
-                <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/codingbnr0.jpg?h=7e5c5687&itok=s0D_P7SC" alt="Makerspace tools">
-                <br>
-                <iframe class="library-map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.544415320985!2d-80.9852903!3d43.3708652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882eadf64c43c1a7%3A0x684b32198f361bf!2sStratford%20Public%20Library!5e0!3m2!1sen!2sca!4v1686622056694!5m2!1sen!2sca"
-                    width="600" height="450" allowfullscreen="" title="Stratford Public Library Location Map"></iframe>
-    </section>
+                <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/codingbnr0.jpg?h=7e5c5687&itok=s0D_P7SC"
+                    alt="Makerspace tools">
+            </div>
+            <div class="sketchfab-embed-wrapper">
+                <iframe class="sketchfab-iframe" title="Chromebook 3D Model" frameborder="0" allowfullscreen
+                    mozallowfullscreen="true" webkitallowfullscreen="true"
+                    allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                    execution-while-out-of-viewport execution-while-not-rendered web-share
+                    src="https://sketchfab.com/models/db7196566d7941cc96170258cd4ce948/embed?autospin=1&autostart=1&preload=1&transparent=1">
+                </iframe>
 
-    <section id="viewer">
-        <div class="card">
-            <h2>📦 3D Experience</h2>
-            <p>Explore a rotating model representing innovation & tech access.</p>
-            <div id="model-viewer"></div>
+                <p class="sketchfab-attribution">
+                    <a href="https://sketchfab.com/3d-models/chromebook-db7196566d7941cc96170258cd4ce948"
+                        target="_blank" rel="noopener noreferrer">
+                        Chromebook
+                    </a> by
+                    <a href="https://sketchfab.com/roboticaparana" target="_blank" rel="noopener noreferrer">
+                        Robótica Paraná
+                    </a> on
+                    <a href="https://sketchfab.com" target="_blank" rel="noopener noreferrer">
+                        Sketchfab
+                    </a>
+                </p>
+            </div>
+
+            <p class="sketchfab-attribution">
+                <a href="https://sketchfab.com/3d-models/chromebook-db7196566d7941cc96170258cd4ce948" target="_blank"
+                    rel="noopener noreferrer" class="sketchfab-attribution-link">
+                    Chromebook
+                </a> by
+                <a href="https://sketchfab.com/roboticaparana" target="_blank" rel="noopener noreferrer"
+                    class="sketchfab-attribution-link">
+                    Robótica Paraná
+                </a> on
+                <a href="https://sketchfab.com" target="_blank" rel="noopener noreferrer"
+                    class="sketchfab-attribution-link">
+                    Sketchfab
+                </a>
+            </p>
+        </div>
+
         </div>
     </section>
 
     <section id="help">
         <div class="card">
-            <h2>🤝 How You Can Help</h2>
+            <h2>🙌 Get Involved</h2>
             <ul>
-                <li>📚 Volunteer as a Tech Tutor</li>
-                <li>💵 Donate devices or funds</li>
-                <li>🎉 Attend Tech Tuesdays and workshops</li>
+                <li>🧑‍🏫 Volunteer as a Tech Tutor</li>
+                <li>💻 Donate used devices</li>
+                <li>🎉 Join our Tech Tuesdays</li>
             </ul>
+            <p>Help bridge the gap and support digital equity for all.</p>
         </div>
+    </section>
+<!-- 
+        <section id="contact">
+        <div class="card">
+            
+        </div> -->
     </section>
 
     <footer>
@@ -347,31 +428,6 @@
             document.body.classList.toggle('dark');
             document.querySelector('nav').classList.toggle('dark');
         }
-
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(350, 350);
-        document.getElementById("model-viewer").appendChild(renderer.domElement);
-
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshStandardMaterial({ color: 0x0a84ff });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        const light = new THREE.PointLight(0xffffff, 1);
-        light.position.set(5, 5, 5);
-        scene.add(light);
-        camera.position.z = 3;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            renderer.render(scene, camera);
-        }
-        animate();
 
         function toggleDarkMode() {
             const body = document.body;
