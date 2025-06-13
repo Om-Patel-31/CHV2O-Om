@@ -18,6 +18,9 @@
             --text-muted-light: #5a5a6a;
             --radius: 1.2rem;
             --transition: 0.3s ease;
+            --link-color: #0a84ff; /* Link color */
+            --link-hover-color: #0056b3; /* Link hover color */
+            --link-background-hover: rgba(10, 132, 255, 0.1); /* Background color on hover */
         }
 
         body {
@@ -36,6 +39,9 @@
             --card-dark-gradient: linear-gradient(145deg, #121212, #1e1e1e);
             --text-light: #e0e0e0;
             --text-muted-light: #888888; /* Adjusted muted text color for dark mode */
+            --link-color: #64d2ff; /* Link color in dark mode */
+            --link-hover-color: #4db8ff; /* Link hover color in dark mode */
+            --link-background-hover: rgba(100, 210, 255, 0.2); /* Background color on hover in dark mode */
             color: var(--text-light);
             background: var(--background-light);
         }
@@ -123,6 +129,22 @@
 
         body.dark ul {
             color: var(--text-muted-light);
+        }
+
+        /* Improved Link Styles */
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition), background var(--transition);
+            padding: 0.2rem 0.4rem; /* Padding for better click area */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+            background: var(--link-background-hover);
+            text-decoration: none; /* Keep underline off on hover */
         }
 
         footer {
