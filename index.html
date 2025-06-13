@@ -297,6 +297,54 @@
             text-decoration: none;
             transition: color 0.2s;
         }
+        .contact-card {
+            background: var(--card-light-gradient);
+            border-left: 6px solid var(--primary-start);
+            margin-top: 2rem;
+        }
+        .contact-card h2 {
+            margin-top: 0;
+        }
+        .contact-list,
+        .social-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+        .contact-list li,
+        .social-list li {
+            margin-bottom: 0.5rem;
+            font-size: 1.08rem;
+        }
+        .contact-list a,
+        .social-list a {
+            color: var(--primary-start);
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .contact-list a:hover,
+        .social-list a:hover {
+            color: var(--primary-end);
+        }
+        .social-list {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .social-list li {
+            display: inline;
+        }
+        body.dark .contact-card {
+            background: var(--card-dark-gradient);
+            border-left: 6px solid var(--primary-end);
+        }
+        body.dark .contact-list a,
+        body.dark .social-list a {
+            color: var(--primary-end);
+        }
+        body.dark .contact-list a:hover,
+        body.dark .social-list a:hover {
+            color: var(--primary-start);
+        }
     </style>
 </head>
 
@@ -413,24 +461,23 @@
         </div>
     </section>
 
-        <section id="contact">
-        <div class="card">
-            <h2>📞Contact</h2>
+    <section id="contact">
+        <div class="card contact-card">
+            <h2>📞 Contact</h2>
             <p>For more information or to get involved, please contact SPL:</p>
-            <ul>
-                <li>Email: <a href="mailto:askspl@splibrary.ca">askspl@splibrary.ca</a>
-                </li>
+            <ul class="contact-list">
+                <li>Email: <a href="mailto:askspl@splibrary.ca">askspl@splibrary.ca</a></li>
                 <li>Phone: <a href="tel:+15192710220">+1 (519) 271-0220</a></li>
                 <li>Address: 19 St. Andrew Street, Stratford, ON N5A 1A2</li>
             </ul>
             <p>Follow us on social media for updates:</p>
-            <ul>
+            <ul class="social-list">
                 <li><a href="https://www.facebook.com/StratfordPublicLibrary" target="_blank" rel="noopener">Facebook</a></li>
                 <li><a href="https://twitter.com/StratfordPL" target="_blank" rel="noopener">Twitter</a></li>
                 <li><a href="https://www.instagram.com/stratfordpubliclibrary/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
         </div>
     </section>
-
     <footer>
         &copy; 2025 Om Patel — Bridging the Digital Divide
     </footer>
