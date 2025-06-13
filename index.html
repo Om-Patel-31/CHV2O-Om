@@ -105,6 +105,7 @@
             padding: 0 2rem;
         }
 
+        /* Make all cards look like contact card */
         .card {
             background: var(--card-light-gradient);
             border-radius: var(--radius);
@@ -113,6 +114,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
             transition: background var(--transition), color var(--transition), transform var(--transition);
             color: var(--text-light);
+            border-left: 6px solid var(--primary-start);
         }
 
         .card:hover {
@@ -189,10 +191,12 @@
             box-shadow: 0 6px 20px rgba(0, 210, 255, 0.9);
         }
 
+        /* All cards dark mode like contact */
         body.dark .card {
             background: var(--card-dark-gradient);
             box-shadow: 0 6px 30px rgba(0, 210, 255, 0.3);
             color: var(--text-light);
+            border-left: 6px solid var(--primary-end);
         }
 
         body.dark .card:hover {
@@ -297,11 +301,6 @@
             text-decoration: none;
             transition: color 0.2s;
         }
-        .contact-card {
-            background: var(--card-light-gradient);
-            border-left: 6px solid var(--primary-start);
-            margin-top: 2rem;
-        }
         .contact-card h2 {
             margin-top: 0;
         }
@@ -332,10 +331,6 @@
         }
         .social-list li {
             display: inline;
-        }
-        body.dark .contact-card {
-            background: var(--card-dark-gradient);
-            border-left: 6px solid var(--primary-end);
         }
         body.dark .contact-list a,
         body.dark .social-list a {
