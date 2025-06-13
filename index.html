@@ -28,6 +28,18 @@
             transition: background var(--transition), color var(--transition);
         }
 
+        body.dark {
+            --primary-gradient: linear-gradient(135deg, #6a00f4, #00d2ff);
+            --primary-start: #6a00f4;
+            --primary-end: #00d2ff;
+            --background-light: #0a0a0a;
+            --card-dark-gradient: linear-gradient(145deg, #121212, #1e1e1e);
+            --text-light: #e0e0e0;
+            --text-muted-light: #888888; /* Adjusted muted text color for dark mode */
+            color: var(--text-light);
+            background: var(--background-light);
+        }
+
         header {
             background: var(--primary-gradient);
             color: white;
@@ -46,30 +58,6 @@
             margin-top: 1rem;
         }
 
-        nav {
-            background: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        nav a {
-            color: var(--primary-start);
-            margin: 0 1rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color var(--transition);
-        }
-
-        nav a:hover {
-            color: var(--primary-end);
-        }
-
         .toggle-darkmode {
             background: var(--primary-gradient);
             color: white;
@@ -79,24 +67,12 @@
             cursor: pointer;
             font-weight: 700;
             font-size: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
-            -webkit-user-select: none;
-            user-select: none;
-            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.6);
+            margin-top: 1rem;
         }
 
         .toggle-darkmode:hover {
             filter: brightness(1.15);
             transform: scale(1.1);
-        }
-
-        body.dark .toggle-darkmode {
-            background: var(--primary-gradient);
-            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.9);
-            color: white;
         }
 
         section {
@@ -117,6 +93,12 @@
             border-left: 6px solid var(--primary-start);
         }
 
+        body.dark .card {
+            background: var(--card-dark-gradient);
+            color: var(--text-light);
+            border-left: 6px solid var(--primary-end);
+        }
+
         .card:hover {
             transform: translateY(-4px);
         }
@@ -129,9 +111,27 @@
             margin-bottom: 1rem;
         }
 
+        body.dark h2 {
+            color: var(--text-light);
+            border-bottom: 3px solid var(--primary-end);
+        }
+
         ul {
             padding-left: 1.5rem;
             color: var(--text-muted-light);
+        }
+
+        body.dark ul {
+            color: var(--text-muted-light);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--primary-gradient);
+            color: white;
+            font-size: 0.9rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .gallery img {
@@ -145,139 +145,11 @@
             transform: scale(1.05);
         }
 
-        /* Dark Theme overrides */
-
-        body.dark {
-            --primary-gradient: linear-gradient(135deg, #6a00f4, #00d2ff);
-            --primary-start: #6a00f4;
-            --primary-end: #00d2ff;
-            --background-dark: #0a0a0a;
-            --card-dark-gradient: linear-gradient(145deg, #121212, #1e1e1e);
-            --text-light: #e0e0e0;
-            --text-muted-light: #888;
-            background: var(--background-dark);
-            color: var(--text-light);
-        }
-
-        body.dark header {
-            background: var(--primary-gradient);
-            box-shadow: 0 8px 30px rgba(106, 0, 244, 0.7);
-            color: white;
-            text-shadow: 0 2px 8px rgba(0, 210, 255, 0.7);
-        }
-
-        body.dark nav {
-            background: #121212;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-        }
-
-        body.dark nav a {
-            color: var(--text-light);
-        }
-
-        body.dark nav a:hover {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        body.dark .toggle-darkmode {
-            background: var(--primary-gradient);
-            box-shadow: 0 4px 12px rgba(106, 0, 244, 0.6);
-        }
-
-        body.dark .toggle-darkmode:hover {
-            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.9);
-        }
-
-        /* All cards dark mode like contact */
-        body.dark .card {
-            background: var(--card-dark-gradient);
-            box-shadow: 0 6px 30px rgba(0, 210, 255, 0.3);
-            color: var(--text-light);
-            border-left: 6px solid var(--primary-end);
-        }
-
-        body.dark .card:hover {
-            box-shadow: 0 12px 50px rgba(0, 210, 255, 0.6);
-            transform: translateY(-6px);
-        }
-
-        body.dark h2 {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            border-bottom: 3px solid var(--primary-end);
-        }
-
-        body.dark ul {
-            color: var(--text-muted-light);
-        }
-
-        body.dark .gallery img {
-            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.15);
-            filter: brightness(0.95);
-        }
-
-        body.dark .gallery img:hover {
-            box-shadow: 0 14px 40px rgba(0, 210, 255, 0.4);
-            filter: brightness(1);
-        }
-
-        .gallery img {
-            width: 50%;
-            height: auto;
-            border-radius: var(--radius);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            transition: transform var(--transition), box-shadow var(--transition);
-            margin-top: 1rem;
-        }
-
-        .library-map {
-            border: 0;
-            max-width: 100%;
-            border-radius: var(--radius);
-            box-shadow: 0 4px 16px rgba(10, 132, 255, 0.15);
-            margin-top: 2rem;
-        }
-
-        .library-map:hover {
-            box-shadow: 0 6px 20px rgba(10, 132, 255, 0.25);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: var(--primary-gradient);
-            color: white;
-            font-size: 0.9rem;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-        }
-
         .sketchfab-embed-wrapper {
             margin: 1.5rem 0 0 0;
             text-align: center;
         }
 
-        /* Added to move inline styles from HTML */
-        .sketchfab-embed-wrapper {
-            margin: 1rem 0;
-            text-align: center;
-        }
-
-        .sketchfab-embed-wrapper iframe {
-            width: 75%;
-            height: 300px;
-            border-radius: 1.2rem;
-            box-shadow: 0 4px 16px rgba(10, 132, 255, 0.15);
-            background: #181a1b;
-            margin: 0 auto;
-            display: block;
-        }
-
-        /* Added for Sketchfab iframe in 3D Tech Preview */
         .sketchfab-iframe {
             width: 100%;
             max-width: 800px;
@@ -288,78 +160,16 @@
             background: #181a1b;
             box-shadow: 0 4px 16px rgba(10, 132, 255, 0.15);
         }
-
-        .sketchfab-attribution {
-            font-size: 13px;
-            color: #777;
-            margin-top: 8px;
-        }
-
-        .sketchfab-attribution-link {
-            font-weight: bold;
-            color: #1CAAD9;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .contact-card h2 {
-            margin-top: 0;
-        }
-        .contact-list,
-        .social-list {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 1rem;
-        }
-        .contact-list li,
-        .social-list li {
-            margin-bottom: 0.5rem;
-            font-size: 1.08rem;
-        }
-        .contact-list a,
-        .social-list a {
-            color: var(--primary-start);
-            text-decoration: underline;
-            transition: color 0.2s;
-        }
-        .contact-list a:hover,
-        .social-list a:hover {
-            color: var(--primary-end);
-        }
-        .social-list {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .social-list li {
-            display: inline;
-        }
-        body.dark .contact-list a,
-        body.dark .social-list a {
-            color: var(--primary-end);
-        }
-        body.dark .contact-list a:hover,
-        body.dark .social-list a:hover {
-            color: var(--primary-start);
-        }
     </style>
 </head>
 
 <body>
-    <nav>
-        <div>
-            <a href="#mission">Mission</a>
-            <a href="#divide">Digital Divide</a>
-            <a href="#offers">Services</a>
-            <a href="#map">Map</a>
-            <a href="#viewer">3D View</a>
-            <a href="#help">Get Involved</a>
-        </div>
-        <button type="button" id="toggle-darkmode" class="toggle-darkmode" aria-label="Toggle dark mode"
-            onclick="toggleDarkMode()"></button>
-    </nav>
     <header>
         <h1>Stratford Public Library</h1>
         <p>Bridging the Digital Divide in Stratford & Perth</p>
         <p>Equal access to digital resources and learning opportunities.</p>
+        <button type="button" id="toggle-darkmode" class="toggle-darkmode" aria-label="Toggle dark mode"
+            onclick="toggleDarkMode()">🌙</button>
     </header>
 
     <section id="mission">
@@ -410,7 +220,6 @@
                     execution-while-out-of-viewport execution-while-not-rendered web-share
                     src="https://sketchfab.com/models/db7196566d7941cc96170258cd4ce948/embed?autospin=1&autostart=1&preload=1&transparent=1">
                 </iframe>
-
                 <p class="sketchfab-attribution">
                     <a href="https://sketchfab.com/3d-models/chromebook-db7196566d7941cc96170258cd4ce948"
                         target="_blank" rel="noopener noreferrer">
@@ -424,23 +233,6 @@
                     </a>
                 </p>
             </div>
-
-            <p class="sketchfab-attribution">
-                <a href="https://sketchfab.com/3d-models/chromebook-db7196566d7941cc96170258cd4ce948" target="_blank"
-                    rel="noopener noreferrer" class="sketchfab-attribution-link">
-                    Chromebook
-                </a> by
-                <a href="https://sketchfab.com/roboticaparana" target="_blank" rel="noopener noreferrer"
-                    class="sketchfab-attribution-link">
-                    Robótica Paraná
-                </a> on
-                <a href="https://sketchfab.com" target="_blank" rel="noopener noreferrer"
-                    class="sketchfab-attribution-link">
-                    Sketchfab
-                </a>
-            </p>
-        </div>
-
         </div>
     </section>
 
@@ -473,23 +265,17 @@
             </ul>
         </div>
     </section>
+    
     <footer>
         &copy; 2025 Om Patel — Bridging the Digital Divide
     </footer>
 
     <script>
         function toggleDarkMode() {
-            document.body.classList.toggle('dark');
-            document.querySelector('nav').classList.toggle('dark');
-        }
-
-        function toggleDarkMode() {
             const body = document.body;
-            const nav = document.querySelector('nav');
             const btn = document.getElementById('toggle-darkmode');
 
             body.classList.toggle('dark');
-            nav.classList.toggle('dark');
 
             if (body.classList.contains('dark')) {
                 btn.textContent = '☀️';            // Sun icon for light mode
@@ -508,7 +294,6 @@
             const btn = document.getElementById('toggle-darkmode');
             if (theme === 'dark') {
                 document.body.classList.add('dark');
-                document.querySelector('nav').classList.add('dark');
                 btn.textContent = '☀️';
                 btn.setAttribute('aria-label', 'Toggle light mode');
             } else {
@@ -517,7 +302,6 @@
             }
         });
     </script>
-    </section>
 </body>
 
 </html>
