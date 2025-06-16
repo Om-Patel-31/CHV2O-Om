@@ -1,336 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stratford Public Library</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --primary-start: #0a84ff;
-        --primary-end: #64d2ff;
-        --primary-gradient: linear-gradient(
-          135deg,
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stratford Public Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-start: #0a84ff;
+      --primary-end: #64d2ff;
+      --primary-gradient: linear-gradient(135deg,
           var(--primary-start),
-          var(--primary-end)
-        );
-        --bg-light: #f4f7fb;
-        --bg-dark: #0a0a0a;
-        --card-light: #ffffff;
-        --card-dark: #1c1c1c;
-        --text-light: #1c1e21;
-        --text-dark: #e0e0e0;
-        --text-muted: #6c757d;
-        --radius: 1rem;
-        --transition: 0.3s ease;
-        --link-color: #0a84ff;
-        --link-hover: #0056b3;
-        --link-hover-bg: rgba(10, 132, 255, 0.1);
-      }
+          var(--primary-end));
+      --bg-light: #f4f7fb;
+      --bg-dark: #0a0a0a;
+      --card-light: #ffffff;
+      --card-dark: #1c1c1c;
+      --text-light: #1c1e21;
+      --text-dark: #e0e0e0;
+      --text-muted: #6c757d;
+      --radius: 1rem;
+      --transition: 0.3s ease;
+      --link-color: #0a84ff;
+      --link-hover: #0056b3;
+      --link-hover-bg: rgba(10, 132, 255, 0.1);
+    }
 
-      * {
-        box-sizing: border-box;
-      }
+    * {
+      box-sizing: border-box;
+    }
 
-      body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        background: var(--bg-light);
-        color: var(--text-light);
-        transition: background var(--transition), color var(--transition);
-      }
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background var(--transition), color var(--transition);
+    }
 
-      body.dark {
-        background: var(--bg-dark);
-        color: var(--text-dark);
-      }
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
 
-      header {
-        background: var(--primary-gradient);
-        color: white;
-        padding: 3rem 1rem 2rem;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(10, 132, 255, 0.4);
-      }
+    header {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(10, 132, 255, 0.4);
+    }
 
-      header h1 {
-        font-size: 3rem;
-        margin: 0;
-      }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
 
-      header p {
-        font-size: 1.25rem;
-        margin: 1rem 0;
-      }
+    header p {
+      font-size: 1.25rem;
+      margin: 1rem 0;
+    }
 
-      .toggle-darkmode {
-        background: white;
-        color: var(--primary-start);
-        border: none;
-        padding: 0.6rem 1.2rem;
-        font-weight: 700;
-        font-size: 1rem;
-        border-radius: var(--radius);
-        cursor: pointer;
-        transition: transform var(--transition), filter var(--transition);
-      }
+    .toggle-darkmode {
+      background: white;
+      color: var(--primary-start);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform var(--transition), filter var(--transition);
+    }
 
-      .toggle-darkmode:hover {
-        filter: brightness(1.1);
-        transform: scale(1.05);
-      }
+    .toggle-darkmode:hover {
+      filter: brightness(1.1);
+      transform: scale(1.05);
+    }
 
-      .carousel-container {
-        position: relative;
-        max-width: 1000px;
-        margin: 3rem auto;
-        overflow: hidden;
-      }
+    .carousel-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 3rem auto;
+      overflow: hidden;
+    }
 
-      .carousel {
-        display: flex;
-        transition: transform 0.6s ease-in-out;
-        width: 100%;
-      }
+    .carousel {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      width: 100%;
+    }
 
-      .carousel:hover {
-        animation-play-state: paused;
-      }
+    .carousel:hover {
+      animation-play-state: paused;
+    }
 
-      .card {
-        min-width: 97%;
-        max-width: 700px;
-        background: var(--card-light);
-        border-radius: var(--radius);
-        padding: 2rem;
-        margin: 0 1rem;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-        transition: transform 0.4s ease, background var(--transition);
-        border-left: 6px solid var(--primary-start);
-        border-right: 6px solid var(--primary-start);
-        text-align: center;
-      }
+    .card {
+      min-width: 97%;
+      max-width: 700px;
+      background: var(--card-light);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 0 1rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, background var(--transition);
+      border-left: 6px solid var(--primary-start);
+      border-right: 6px solid var(--primary-start);
+      text-align: center;
+    }
 
-      body.dark .card {
-        background: var(--card-dark);
-        border-left: 6px solid var(--primary-end);
-      }
+    body.dark .card {
+      background: var(--card-dark);
+      border-left: 6px solid var(--primary-end);
+    }
 
-      .card:hover {
-        transform: scale(1.02);
-      }
+    .card:hover {
+      transform: scale(1.02);
+    }
 
-      h2 {
-        font-size: 2rem;
-        color: var(--primary-start);
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--primary-end);
-        padding-bottom: 0.5rem;
-      }
+    h2 {
+      font-size: 2rem;
+      color: var(--primary-start);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-end);
+      padding-bottom: 0.5rem;
+    }
 
-      body.dark h2 {
-        color: var(--primary-end);
-      }
+    body.dark h2 {
+      color: var(--primary-end);
+    }
 
-      ul {
-        text-align: left;
-        padding-left: 1.5rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-      }
+    ul {
+      text-align: left;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
 
-      a {
-        color: var(--link-color);
-        text-decoration: none;
-        font-weight: 600;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        transition: color var(--transition), background var(--transition);
-      }
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      transition: color var(--transition), background var(--transition);
+    }
 
-      a:hover {
-        color: var(--link-hover);
-        background: var(--link-hover-bg);
-      }
+    a:hover {
+      color: var(--link-hover);
+      background: var(--link-hover-bg);
+    }
 
-      iframe {
-        width: 100%;
-        max-width: 600px;
-        height: 300px;
-        border: none;
-        border-radius: 1rem;
-        margin-top: 1.5rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      }
+    iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      border: none;
+      border-radius: 1rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
 
-      .mla-card {
-        max-width: 900px;
-        margin: 4rem auto 2rem;
-      }
-    </style>
-  </head>
+    .mla-card {
+      max-width: 900px;
+      margin: 4rem auto 2rem;
+    }
+  </style>
+</head>
 
-  <body>
-    <header>
-      <h1>Stratford Public Library</h1>
-      <p>Bridging the Digital Divide in Stratford & Perth</p>
-      <button
-        class="toggle-darkmode"
-        id="toggle-darkmode"
-        onclick="toggleDarkMode()"
-      >
-        🌙
-      </button>
-    </header>
+<body>
+  <header>
+    <h1>Stratford Public Library</h1>
+    <p>Bridging the Digital Divide in Stratford & Perth</p>
+    <button class="toggle-darkmode" id="toggle-darkmode" onclick="toggleDarkMode()">
+      🌙
+    </button>
+  </header>
 
-    <div class="carousel-container" id="carousel-container">
-      <div class="carousel" id="carousel">
-        <!-- Slides populated by JS -->
-      </div>
+  <div class="carousel-container" id="carousel-container">
+    <div class="carousel" id="carousel">
+      <!-- Slides populated by JS -->
     </div>
+  </div>
 
-    <div class="card mla-card">
-      <h2>📚 MLA Sources</h2>
-      <ul>
-        <li>
-          "Stratford Public Library." <em>splibrary.ca</em>. Accessed 9 June
-          2025.
-        </li>
-        <li>
-          "The Constitution Acts 1867 to 1982."
-          <em>laws-lois.justice.gc.ca</em>. Accessed 10 June 2025.
-        </li>
-        <li>
-          "Public Libraries Act, R.S.O. 1990, c. P.44." <em>Ontario.ca</em>.
-          Accessed 10 June 2025.
-        </li>
-        <li>
-          "Universal Declaration of Human Rights." <em>United Nations</em>.
-          Accessed 10 June 2025.
-        </li>
-      </ul>
-    </div>
+  <div class="card mla-card">
+    <h2>📚 MLA Sources</h2>
+    <ul>
+      <li>
+        "Stratford Public Library." <em>splibrary.ca</em>. Accessed 9 June
+        2025.
+      </li>
+      <li>
+        "The Constitution Acts 1867 to 1982."
+        <em>laws-lois.justice.gc.ca</em>. Accessed 10 June 2025.
+      </li>
+      <li>
+        "Public Libraries Act, R.S.O. 1990, c. P.44." <em>Ontario.ca</em>.
+        Accessed 10 June 2025.
+      </li>
+      <li>
+        "Universal Declaration of Human Rights." <em>United Nations</em>.
+        Accessed 10 June 2025.
+      </li>
+    </ul>
+  </div>
 
-    <script>
-      const carousel = document.getElementById("carousel");
-      const container = document.getElementById("carousel-container");
-      const slides = [
-        `<div class="card">
-      <h2>📖 Mission</h2>
-      <p>Founded in 1903, the Stratford Public Library has been a cornerstone of the community for over a century. Our mission is to empower people of all ages and backgrounds by providing free digital access, fostering lifelong learning, and supporting personal and professional growth through diverse educational resources and programs.</p>
-      <p>We believe in bridging the digital divide and creating an inclusive space where everyone can thrive in today's technology-driven world.</p>
-      <img src="./logo.png" alt="Stratford Public Library Logo" style="width: 200px; margin-top: 1rem;" />
+  <script>
+    const carousel = document.getElementById("carousel");
+    const container = document.getElementById("carousel-container");
+    const slides = [
+      `<div class="card">
+    <h2>📖 Mission</h2>
+    <p>Since 1903, the Stratford Public Library has empowered the community through free digital access, learning, and inclusive programs for all ages.</p>
+    <p>We aim to bridge the digital divide and foster growth in today’s tech-driven world.</p>
+    <img src="./logo.png" alt="Stratford Public Library Logo" style="width: 200px; margin-top: 1rem;" />
   </div>`,
 
-        `<div class="card">
-      <h2>📉 The Issue</h2>
-      <p>Despite the rapid advancement of technology, many individuals face barriers to digital literacy and access:</p>
-      <ul>
-        <li>Approximately 1 in 4 Canadians lack the necessary digital skills to fully participate in society.</li>
-        <li>In Ontario, 21% of residents experience poor or unreliable access to digital tools and the internet.</li>
-        <li>Seniors, in particular, often struggle with adapting to new technology, risking social isolation and limited access to vital services.</li>
-      </ul>
-      <p>Addressing these challenges is critical to ensuring equitable opportunities for all citizens.</p>
+      `<div class="card">
+    <h2>📉 The Issue</h2>
+    <p>Many Canadians face digital barriers:</p>
+    <ul>
+      <li>1 in 4 lack essential digital skills.</li>
+      <li>21% in Ontario have poor digital access.</li>
+      <li>Seniors often struggle with tech, risking isolation.</li>
+    </ul>
+    <p>Addressing this ensures equal opportunities.</p>
     <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/smtechhelp_0.jpg?itok=1WtIoHL-" alt="Digital Divide" style="width: 100%; max-width: 600px; margin-top: 1rem;" />
   </div>`,
 
-        `<div class="card">
-      <h2>💡 Our Services</h2>
-      <p>To help close the digital gap, we offer a wide range of services designed to support our community:</p>
-      <ul>
-        <li>High-speed Wi-Fi and access to modern computers and Chromebooks available for in-library use or lending.</li>
-        <li>Personalized tech tutoring sessions to help users build confidence with digital tools and platforms.</li>
-        <li>A vibrant MakerSpace that encourages creativity and innovation through hands-on learning with 3D printers, coding workshops, and more.</li>
-      </ul>
-      <iframe src="https://sketchfab.com/models/db7196566d7941cc96170258cd4ce948/embed?autospin=1&autostart=1&preload=1&transparent=1" title="3D Chromebook"></iframe>
+      `<div class="card">
+    <h2>💡 Our Services</h2>
+    <p>We help close the digital gap through:</p>
+    <ul>
+      <li>Free Wi-Fi, computers, and Chromebooks.</li>
+      <li>1-on-1 tech tutoring sessions.</li>
+      <li>MakerSpace with 3D printing, coding, and more.</li>
+    </ul>
+    <iframe src="https://sketchfab.com/models/db7196566d7941cc96170258cd4ce948/embed?autospin=1&autostart=1&preload=1&transparent=1" title="3D Chromebook"></iframe>
   </div>`,
 
-        `<div class="card">
-      <h2>🙌 Get Involved</h2>
-      <p>There are many ways you can contribute to our mission and support digital inclusion:</p>
-      <ul>
-        <li>Volunteer your time or expertise to assist with tech tutoring, digital literacy workshops, or community outreach.</li>
-        <li>Donate gently used devices such as laptops, tablets, or smartphones to help those in need.</li>
-        <li>Participate in our popular Tech Tuesdays events, where community members come together to learn, share, and connect over technology.</li>
-      </ul>
-      <p>Your involvement makes a real difference in bridging the digital divide.</p>
+      `<div class="card">
+    <h2>🙌 Get Involved</h2>
+    <p>Support digital inclusion by:</p>
+    <ul>
+      <li>Volunteering for tutoring or workshops.</li>
+      <li>Donating gently used tech.</li>
+      <li>Joining our Tech Tuesdays events.</li>
+    </ul>
+    <p>Your help bridges the digital divide.</p>
     <img src="https://splibrary.ca/sites/default/files/styles/hero_1280x366/public/helpinghandshero.png?h=ae3f8234&itok=hw8uBcQ5" alt="Get Involved" style="width: 100%; max-width: 600px; margin-top: 1rem;" />
   </div>`,
 
-        `<div class="card">
-      <h2>🏛️ Government Support</h2>
-      <p>The Stratford Public Library benefits from various levels of government support that help sustain and expand our services:</p>
-      <ul>
-        <li><strong>Municipal:</strong> The City of Stratford allocates funding and resources to maintain and improve library facilities.</li>
-        <li><strong>Provincial:</strong> Ontario’s Public Libraries Act ensures public access to knowledge and supports library operations.</li>
-        <li><strong>Federal:</strong> The Canada Digital Charter promotes digital rights, inclusion, and innovation nationwide.</li>
-      </ul>
-      <p>These frameworks are vital in enabling us to serve our community effectively.</p>
+      `<div class="card">
+    <h2>🏛️ Government Support</h2>
+    <p>We thrive thanks to:</p>
+    <ul>
+      <li><strong>Municipal:</strong> City funding for operations.</li>
+      <li><strong>Provincial:</strong> Public Libraries Act ensures access.</li>
+      <li><strong>Federal:</strong> Digital Charter supports inclusion.</li>
+    </ul>
+    <p>These supports help us serve effectively.</p>
     <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4no1D_xjRd3cbjZoiF4ktw70cVSbeHKWAu3p9lfCHWENAU-HCkihjBbbce_3xD_fUcKc2Dqe7SXinZwH_VX1zxhhGE0SIhuJjUU4yS_dP0N6aOaUIphzIw6Lpa29EHKW0Gv4rgjK=s1360-w1360-h1020-rw" alt="Stratford City Hall" style="width: 100%; max-width: 300px; margin-top: 1rem;" />
   </div>`,
 
-        `<div class="card">
-      <h2>🌍 Human Rights</h2>
-      <p>Access to information and education is a fundamental human right recognized globally:</p>
-      <ul>
-        <li><strong>United Nations Article 19:</strong> Guarantees freedom of expression and access to information.</li>
-        <li><strong>United Nations Article 26:</strong> Affirms the right to education for all individuals.</li>
-        <li><strong>Canadian Charter of Rights and Freedoms, Section 15:</strong> Ensures equality rights without discrimination, supporting equitable access to library services.</li>
-      </ul>
-      <p>Our work aligns with these principles to promote inclusion and empowerment.</p>
+      `<div class="card">
+    <h2>🌍 Human Rights</h2>
+    <p>Access to digital tools is a right:</p>
+    <ul>
+      <li><strong>UN Article 19:</strong> Right to information.</li>
+      <li><strong>UN Article 26:</strong> Right to education.</li>
+      <li><strong>Charter Section 15:</strong> Equality without discrimination.</li>
+    </ul>
+    <p>We promote inclusion and empowerment for all.</p>
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Flag_of_the_United_Nations.svg/1200px-Flag_of_the_United_Nations.svg.png" alt="UN Flag" style="width: 100%; max-width: 300px; margin-top: 1rem;" />
   </div>`,
 
-        `<div class="card">
-      <h2>📍 Visit Us</h2>
-      <p>We warmly welcome you to visit the Stratford Public Library and explore all that we offer:</p>
-      <p><strong>Address:</strong> 19 St. Andrew St, Stratford, ON</p>
-      <p><strong>Email:</strong> <a href='mailto:askspl@splibrary.ca'>askspl@splibrary.ca</a></p>
-      <p><strong>Phone:</strong> <a href="tel:5192710220">+1 (519) 271-0220</a></p>
-      <p>Our friendly staff are here to assist you with any questions, resource needs, or program information.</p>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.9716925795714!2d-80.98446862407236!3d43.37220837418826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882e4b2f3a37e1ff%3A0xbb5f716f86fbd8ab!2sStratford%20Public%20Library!5e0!3m2!1sen!2sca!4v1718308987285!5m2!1sen!2sca" allowfullscreen></iframe>
+      `<div class="card">
+    <h2>📍 Visit Us</h2>
+    <p>Come explore our resources at:</p>
+    <p><strong>Address:</strong> 19 St. Andrew St, Stratford, ON</p>
+    <p><strong>Email:</strong> <a href='mailto:askspl@splibrary.ca'>askspl@splibrary.ca</a></p>
+    <p><strong>Phone:</strong> <a href="tel:5192710220">+1 (519) 271-0220</a></p>
+    <p>We're here to help with all your tech needs.</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.9716925795714!2d-80.98446862407236!3d43.37220837418826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882e4b2f3a37e1ff%3A0xbb5f716f86fbd8ab!2sStratford%20Public%20Library!5e0!3m2!1sen!2sca!4v1718308987285!5m2!1sen!2sca" allowfullscreen></iframe>
   </div>`,
-      ];
+    ];
 
-      // Inject slides
-      slides.forEach((slide) => {
-        carousel.innerHTML += slide;
-      });
+    // Inject slides
+    slides.forEach((slide) => {
+      carousel.innerHTML += slide;
+    });
 
-      // Carousel logic with pause on hover
-      let index = 0;
-      let intervalId;
+    // Carousel logic with pause on hover
+    let index = 0;
+    let intervalId;
 
-      function updateSlide() {
-        carousel.style.transform = `translateX(-${index * 100}%)`;
-      }
+    function updateSlide() {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
 
-      function nextSlide() {
-        index = (index + 1) % slides.length;
-        updateSlide();
-      }
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      updateSlide();
+    }
 
-      function startCarousel() {
-        intervalId = setInterval(nextSlide, 3000);
-      }
+    function startCarousel() {
+      intervalId = setInterval(nextSlide, 3000);
+    }
 
-      function stopCarousel() {
-        clearInterval(intervalId);
-      }
+    function stopCarousel() {
+      clearInterval(intervalId);
+    }
 
-      container.addEventListener("mouseenter", stopCarousel);
-      container.addEventListener("mouseleave", startCarousel);
+    container.addEventListener("mouseenter", stopCarousel);
+    container.addEventListener("mouseleave", startCarousel);
 
-      startCarousel();
+    startCarousel();
 
-      function toggleDarkMode() {
-        document.body.classList.toggle("dark");
-        document.getElementById("toggle-darkmode").textContent =
-          document.body.classList.contains("dark") ? "☀️" : "🌙";
-      }
-    </script>
-  </body>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      document.getElementById("toggle-darkmode").textContent =
+        document.body.classList.contains("dark") ? "☀️" : "🌙";
+    }
+  </script>
+</body>
+
 </html>
